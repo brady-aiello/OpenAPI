@@ -81,6 +81,10 @@ dependencies {
     val daggerVersion = "2.28.3"
     implementation("com.google.dagger:dagger:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+    implementation("com.google.dagger:dagger-android:$daggerVersion")
+    implementation("com.google.dagger:dagger-android-support:$daggerVersion")
+    kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
+
 
     val navigationVersion = "2.3.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
