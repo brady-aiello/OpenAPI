@@ -4,6 +4,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-android")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     val kotlinVersion = rootProject.extra.get("kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
     implementation("androidx.core:core-ktx:1.3.0")
