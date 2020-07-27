@@ -9,10 +9,17 @@ import retrofit2.Response
  */
 @Suppress("unused") // T is used in extending classes
 sealed class GenericApiResponse<T> {
+    /**
+     * separate class for HTTP 204 responses so that we can make ApiSuccessResponse's body non-null.
+     */
+    class ApiEmptyResponse<T> : GenericApiResponse<T>()
+
+    data class ApiSuccessResponse<T>(val body: T) : GenericApiResponse<T>() {}
+
+    data class ApiErrorResponse<T>(val errorMessage: String) : GenericApiResponse<T>()
 
     companion object {
         private val TAG: String = "AppDebug"
-
 
         fun <T> create(error: Throwable): ApiErrorResponse<T> {
             return ApiErrorResponse(
@@ -52,11 +59,3 @@ sealed class GenericApiResponse<T> {
     }
 }
 
-/**
- * separate class for HTTP 204 responses so that we can make ApiSuccessResponse's body non-null.
- */
-class ApiEmptyResponse<T> : GenericApiResponse<T>()
-
-data class ApiSuccessResponse<T>(val body: T) : GenericApiResponse<T>() {}
-
-data class ApiErrorResponse<T>(val errorMessage: String) : GenericApiResponse<T>()

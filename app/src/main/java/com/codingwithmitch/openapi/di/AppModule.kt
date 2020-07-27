@@ -31,11 +31,11 @@ class AppModule{
 
     @Singleton
     @Provides
-    fun provideRetrofitBuilder(gsonBuilder:  Gson): Retrofit.Builder{
+    fun provideRetrofitBuilder(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create(gsonBuilder))
+            .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
@@ -69,7 +69,8 @@ class AppModule{
 
     @Singleton
     @Provides
-    fun provideGlideInstance(application: Application, requestOptions: RequestOptions): RequestManager {
+    fun provideGlideInstance(application: Application,
+                             requestOptions: RequestOptions): RequestManager {
         return Glide.with(application)
             .setDefaultRequestOptions(requestOptions)
     }
